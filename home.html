@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Cargo Items</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+    }
+
+    form {
+      max-width: 700px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    fieldset {
+      margin-top: 30px;
+      border: 2px solid #0074d9;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #f9fcff;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #0055a5;
+      padding: 0 10px;
+    }
+
+    .error {
+      color: #d8000c;
+      background-color: #ffd2d2;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      background-color: #0074d9;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+<h2>Enter Solution Items</h2>
+
+
+<!-- filepath: c:\Users\DELL\Desktop\django new project\cargo_optimizer\optimizer\templates\home.html -->
+<form method="post" action="{% url 'home' %}">
+  {% csrf_token %}
+  <label for="max_weight">Max Weight:</label>
+  <input type="number" name="max_weight" step="0000.00001" required><br>
+
+  <label for="max_volume">Max Volume:</label>
+  <input type="number" name="max_volume" step="0000.00001" required><br>
+
+  <input type="hidden" name="count" value="500">
+
+  <h4>Item 1</h4>
+  <input type="text" name="name0" placeholder="Name" required>
+  <input type="number" name="weight0" step="0000.0001" placeholder="Weight" required>
+  <input type="number" name="capacity0" step="0000.0001" placeholder="Capacity" required>
+  <input type="number" name="height0" step="0000.0001" placeholder="Height" required>
+  <input type="number" name="length0" step="0000.0001" placeholder="Length" required>
+  <input type="number" name="width0" step="0000.0001" placeholder="Width" required><br>
+
+  <h4>Item 2</h4>
+  <input type="text" name="name1" placeholder="Name" required>
+  <input type="number" name="weight1" step="0000.0001" placeholder="Weight" required>
+  <input type="number" name="capacity1" step="0000.0001" placeholder="Capacity" required>
+  <input type="number" name="height1" step="0000.0001" placeholder="Height" required>
+  <input type="number" name="length1" step="0000.0001" placeholder="Length" required>
+  <input type="number" name="width1" step="0000.0001" placeholder="Width" required><br>
+
+  <h4>Item 3</h4>
+  <input type="text" name="name2" placeholder="Name" required>
+  <input type="number" name="weight2" step="0000.0001" placeholder="Weight" required>
+  <input type="number" name="capacity2" step="0000.0001" placeholder="Capacity" required>
+  <input type="number" name="height2" step="0000.0001"placeholder="Height" required>
+  <input type="number" name="length2" step="0000.0001" placeholder="Length" required>
+  <input type="number" name="width2" step="0000.0001" placeholder="Width" required><br>
+
+  <button type="submit">Optimize</button>
+</form>

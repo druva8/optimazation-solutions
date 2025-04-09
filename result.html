@@ -1,0 +1,165 @@
+<!-- filepath: c:\Users\DELL\Desktop\django new project\cargo_optimizer\optimizer\templates\result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Optimized Cargo Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .error-message {
+      color: #d8000c; /* Red color for error */
+      background-color: #ffd2d2; /* Light red background */
+      border: 1px solid #d8000c; /* Red border */
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .cargo-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .cargo-item {
+      background: #f9f9f9;
+      margin: 10px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cargo-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .cargo-name {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    .cargo-details {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #555555;
+    }
+
+    .totals {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .totals p {
+      margin: 5px 0;
+      font-size: 1em;
+      color: #333333;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .back-btn:hover {
+      background: #0056b3;
+    }
+
+    .no-items {
+      text-align: center;
+      color: #ff0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Optimized Cargo Selection</h2>
+
+    {% if message %}
+      <div class="error-message">
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <div class="totals">
+      <p><strong>Total Weight (All Items):</strong> {{ total_weight_all }}</p>
+      <p><strong>Total Volume (All Items):</strong> {{ total_volume_all }}</p>
+      <p><strong>Total Weight (Optimized Items):</strong> {{ total_weight_optimized }}</p>
+      <p><strong>Total Volume (Optimized Items):</strong> {{ total_volume_optimized }}</p>
+    </div>
+
+    <h3>All Items</h3>
+    {% if all_items %}
+      <ul class="cargo-list">
+        {% for item in all_items %}
+          <li class="cargo-item">
+            <div class="cargo-name">{{ item.name }}</div>
+            <div class="cargo-details">
+              Weight: {{ item.weight }} |
+              Volume: {{ item.volume }} (calculated as {{ item.length }} x {{ item.height }} x {{ item.width }}) |
+              Capacity: {{ item.capacity }}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-items">No items available.</p>
+    {% endif %}
+
+    <h3>Optimized Items</h3>
+    {% if optimized_items %}
+      <ul class="cargo-list">
+        {% for item in optimized_items %}
+          <li class="cargo-item">
+            <div class="cargo-name">{{ item.name }}</div>
+            <div class="cargo-details">
+              Weight: {{ item.weight }} |
+              Volume: {{ item.volume }} (calculated as {{ item.length }} x {{ item.height }} x {{ item.width }}) |
+              Capacity: {{ item.capacity }}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-items">No optimized items available.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="back-btn">← Go Back</a>
+  </div>
+</body>
+</html>
